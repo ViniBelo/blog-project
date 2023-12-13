@@ -13,4 +13,9 @@ public class Subject {
     private UUID id;
     private String title;
     private List<Post> posts;
+
+    public Subject(String title, List<Post> posts) {
+        this.title = title;
+        this.posts = posts;
+    }
 }

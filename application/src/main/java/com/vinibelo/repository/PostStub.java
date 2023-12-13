@@ -1,7 +1,6 @@
 package com.vinibelo.repository;
 
 import domain.Post;
-import domain.Subject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +13,10 @@ public class PostStub {
     public UUID savePost(Post post) {
         posts.put(post.getId(), post);
         return post.getId();
+    }
+
+    public void deletePost(UUID id) {
+        posts.remove(id);
     }
 
     public List<Post> getAll() {

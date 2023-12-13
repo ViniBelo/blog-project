@@ -1,17 +1,26 @@
 package com.vinibelo.repository;
 
 import domain.Subject;
+import dto.SubjectRequestDTO;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class SubjectStub {
     private final Map<UUID, Subject> subjects = new HashMap<>();
 
     public void saveSubject(Subject subject) {
-        subjects.put(subject.getId(), subject);
+        subject.setId(UUID.randomUUID());
+        subjects.put(subject.getId(), subject);;
+    }
+
+    public void updateSubject(UUID id, Subject subject) {
+        var persistedSubject = subjects.get(id);
+        persistedSubject.setTitle(subject.getTitle());
+        subjects.put(persistedSubject.getId(), persistedSubject);
+    }
+
+    public void deleteSubject(UUID id) {
+        subjects.remove(id);
     }
 
     public List<Subject> getAll() {

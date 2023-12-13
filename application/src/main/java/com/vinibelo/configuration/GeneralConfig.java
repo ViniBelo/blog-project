@@ -1,5 +1,6 @@
 package com.vinibelo.configuration;
 
+import com.vinibelo.repository.PostStub;
 import com.vinibelo.repository.SubjectStub;
 import com.vinibelo.repository.UserStub;
 import com.vinibelo.service.SubjectService;
@@ -19,8 +20,8 @@ import java.util.UUID;
 public class GeneralConfig implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
-        var user1 = new User(UUID.randomUUID(), "Vinicius", "123", Role.ADMINISTRATOR);
-        var user2 = new User(UUID.randomUUID(), "Felipe", "123", Role.COMMON);
+        var user1 = new User(UUID.randomUUID(), "Vinicius", Role.ADMINISTRATOR);
+        var user2 = new User(UUID.randomUUID(), "Felipe", Role.COMMON);
         var userStub = new UserStub();
         userStub.saveUser(user1);
         userStub.saveUser(user2);
@@ -35,13 +36,19 @@ public class GeneralConfig implements CommandLineRunner {
         subject1.getPosts().add(post2);
     }
 
+
     @Bean
     public SubjectStub subjectStub() {
         return new SubjectStub();
     }
 
     @Bean
+    public PostStub postStub() {
+        return new PostStub();
+    }
+
+    @Bean
     public SubjectService subjectService() {
-        return new SubjectService(subjectStub());
+        return new SubjectService(subjectStub(), postStub());
     }
 }

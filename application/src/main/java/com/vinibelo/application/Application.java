@@ -1,7 +1,7 @@
 package com.vinibelo.application;
 
 import com.vinibelo.configuration.GeneralConfig;
-import com.vinibelo.controller.SubjectController;
+import com.vinibelo.api.subject.SubjectController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
